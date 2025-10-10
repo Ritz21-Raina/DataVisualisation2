@@ -1,0 +1,70 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Live births per year for key ethnic groups (aggregated for all states, both sexes).",
+  "title": "Live Birth trends by Ethnicity",
+  "width": 700,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/Data/dataset.csv"
+  },
+  "transform": [
+    {"filter": "datum.sex == 'both'"},
+    {
+      "filter": "datum.ethnicity == 'bumi_malay' || datum.ethnicity == 'indian' || datum.ethnicity == 'chinese' || datum.ethnicity == 'bumi_other'"
+    },
+    {
+      "calculate": "datum.ethnicity == 'bumi_malay' ? 'Bumiputera Malay' : datum.ethnicity == 'chinese' ? 'Chinese' : datum.ethnicity == 'indian' ? 'Indian' : 'Other Bumiputera'",
+      "as": "Ethnicity_Label"
+    },
+    {
+      "aggregate": [{"op": "sum", "field": "abs", "as": "total_births"}],
+      "groupby": ["Year", "Ethnicity_Label"]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {"type": "line", "point": true, "strokeWidth": 2},
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal", "title": "Year"},
+        "y": {"field": "total_births", "type": "quantitative", "title": "Live Births"},
+        "color": {
+          "field": "Ethnicity_Label",
+          "type": "nominal",
+          "title": "Ethnicity",
+          "scale": {
+            "domain": ["Bumiputera Malay", "Chinese", "Indian", "Other Bumiputera"],
+            "range": ["#1f77b4", "#ff7f0e", "#FFD700", "#d62728"]
+          }
+        },
+        "tooltip": [
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Ethnicity_Label", "type": "nominal", "title": "Ethnicity"},
+          {"field": "total_births", "type": "quantitative", "title": "Live Births"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "dy": -8,
+        "color": "black",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "background": "#ffcc80",
+        "cornerRadius": 4,
+        "padding": 4
+      },
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {"field": "total_births", "type": "quantitative"},
+        "text": {"value": "Chinese births decline (2016)"}
+      },
+      "transform": [
+        {"filter": "datum.Ethnicity_Label == 'Chinese' && datum.Year == 2016"}
+      ]
+    }
+  ],
+  "config": {}
+}
