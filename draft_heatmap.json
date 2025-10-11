@@ -1,0 +1,67 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap of birth counts by state and ethnicity with gender filter",
+  "title": "Birth Counts by State and Ethnicity",
+  "width": 700,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/Data/dataset.csv",
+    "format": {"type": "csv"}
+  },
+  "params": [
+    {
+      "name": "selectedSex",
+      "value": "both",
+      "bind": {
+        "input": "select",
+        "options": ["male", "female", "both"],
+        "name": "Select Gender: "
+      }
+    },
+    {
+      "name": "selectedYear",
+      "value": 2020,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2023,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.sex == selectedSex"},
+    {"filter": "toNumber(datum.Year) == selectedYear"},
+    {"filter": "isFinite(toNumber(datum.abs))"},
+    {"calculate": "toNumber(datum.abs)", "as": "birth_count"}
+  ],
+  "mark": "rect",
+  "encoding": {
+    "y": {"field": "state", "type": "ordinal", "axis": {"title": "State"}},
+    "x": {
+      "field": "ethnicity",
+      "type": "ordinal",
+      "axis": {"title": "Ethnicity"}
+    },
+    "color": {
+      "field": "birth_count",
+      "type": "quantitative",
+      "scale": {"scheme": "reds"},
+      "legend": {"title": "Birth Count"}
+    },
+    "tooltip": [
+      {"field": "state", "title": "State"},
+      {"field": "ethnicity", "title": "Ethnicity"},
+      {"field": "birth_count", "title": "Birth Count"},
+      {"field": "Year", "title": "Year"},
+      {"field": "sex", "title": "Gender"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"labelFontSize": 12, "titleFontSize": 13},
+    "title": {"fontSize": 18, "fontWeight": "600"},
+    "background": "#fff"
+  }
+}
