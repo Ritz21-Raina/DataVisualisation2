@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 500,
+  "title": "Malaysia Live Birth Rate per 1,000 People (Year 2020)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/Data/dataset_for_map_2020.csv"
+  },
+  "transform": [
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/Data/TopoJSON.json",
+          "format": {"type": "topojson", "feature": "my"}
+        },
+        "key": "properties.name",
+        "fields": ["properties", "geometry", "type"]
+      }
+    }
+  ],
+  "mark": {"type": "geoshape"},
+  "encoding": {
+    "color": {
+      "field": "birth_rate",
+      "type": "quantitative",
+      "title": "Birth Rate (per 1,000)",
+      "scale": {"scheme": "blues"}
+    },
+    "tooltip": [
+      {"field": "state", "title": "State"},
+      {"field": "birth_rate", "title": "Birth Rate per 1,000", "format": ".2f"},
+      {"field": "abs", "title": "Total Births", "format": ","},
+      {
+        "field": "Malaysia_total_population",
+        "title": "Population",
+        "format": ","
+      }
+    ]
+  },
+  "projection": {"type": "mercator"},
+  "config": {}
+}
