@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birth Trends in Malaysia (2000–2023)</title>
+
+  <!-- Vega & Vega-Lite -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to bottom right, #fef6f8, #f2f9ff);
+      color: #444;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      background: url('https://cdn-icons-png.flaticon.com/512/616/616408.png') no-repeat right 40px top 20px,
+                  url('https://cdn-icons-png.flaticon.com/512/616/616490.png') no-repeat left 40px top 20px;
+      background-size: 60px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      color: #3b4a60;
+      margin-bottom: 0.3rem;
+    }
+
+    header p {
+      color: #6b7b8c;
+      font-size: 1rem;
+    }
+
+    .viz-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+
+    .viz {
+      margin-bottom: 4rem;
+    }
+
+    .viz h2 {
+      text-align: center;
+      color: #3b4a60;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      color: #888;
+      background-color: #f9fbfd;
+      border-top: 1px solid #eee;
+    }
+
+    .baby-deco {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .baby-deco img {
+      width: 60px;
+      margin: 0 10px;
+      opacity: 0.8;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Birth Trends in Malaysia (2000–2023)</h1>
+    <p>A gentle look into how life began across the years — by state, ethnicity, and gender.</p>
+  </header>
+
+  <div class="baby-deco">
+    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048944.png" alt="baby bottle">
+    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048920.png" alt="baby rattle">
+    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="baby face">
+  </div>
+
+  <main class="viz-container">
+
+    <!-- MAPS -->
+    <section class="viz">
+      <h2>Birth Rate per 1000 People — Year 2000</h2>
+      <div id="map2000"></div>
+      <script>
+        // Replace URL below with your Vega-Lite spec URL or inline spec
+        vegaEmbed('#map2000', 'URL_TO_YOUR_2000_MAP_JSON');
+      </script>
+    </section>
+
+    <section class="viz">
+      <h2>Birth Rate per 1000 People — Year 2010</h2>
+      <div id="map2010"></div>
+      <script>
+        vegaEmbed('#map2010', 'URL_TO_YOUR_2010_MAP_JSON');
+      </script>
+    </section>
+
+    <section class="viz">
+      <h2>Birth Rate per 1000 People — Year 2020</h2>
+      <div id="map2020"></div>
+      <script>
+        vegaEmbed('#map2020', 'URL_TO_YOUR_2020_MAP_JSON');
+      </script>
+    </section>
+
+    <!-- LINE CHART -->
+    <section class="viz">
+      <h2>Birth Count by Ethnicity (2000–2023)</h2>
+      <div id="linechart"></div>
+      <script>
+        vegaEmbed('#linechart', 'URL_TO_YOUR_LINECHART_JSON');
+      </script>
+    </section>
+
+    <!-- LOLLIPOP CHART -->
+    <section class="viz">
+      <h2>Birth Count per State — Select Year</h2>
+      <div id="lollipop"></div>
+      <script>
+        vegaEmbed('#lollipop', 'URL_TO_YOUR_LOLLIPOP_JSON');
+      </script>
+    </section>
+
+    <!-- POPULATION PYRAMID -->
+    <section class="viz">
+      <h2>Population Pyramid — Birth Count by Gender & State</h2>
+      <div id="pyramid"></div>
+      <script>
+        vegaEmbed('#pyramid', 'URL_TO_YOUR_PYRAMID_JSON');
+      </script>
+    </section>
+
+    <!-- HEATMAP -->
+    <section class="viz">
+      <h2>Heatmap of Births — Ethnicity × State</h2>
+      <div id="heatmap"></div>
+      <script>
+        vegaEmbed('#heatmap', 'URL_TO_YOUR_HEATMAP_JSON');
+      </script>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>By Ritika Raina — celebrating the beauty of beginnings.</p>
+  </footer>
+
+</body>
+</html>
