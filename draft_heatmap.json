@@ -47,7 +47,7 @@
     "color": {
       "field": "birth_count",
       "type": "quantitative",
-      "scale": {"scheme": "reds"},
+      "scale": {"scheme": "purplered"},
       "legend": {"title": "Birth Count"}
     },
     "tooltip": [
