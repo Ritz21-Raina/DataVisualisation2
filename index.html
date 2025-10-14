@@ -1,166 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birth Trends in Malaysia (2000–2023)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birth Maps Hero Section</title>
 
-  <!-- Vega & Vega-Lite -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Sour+Gummy&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(to bottom right, #fef6f8, #f2f9ff);
-      color: #444;
+<!-- Vega & Vega-Lite -->
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to bottom right, #fef6f8, #f2f9ff);
+    color: #444;
+  }
+
+  .hero {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 2rem;
+    flex-wrap: wrap;
+  }
+
+  /* LEFT: Illustration */
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-left img {
+    max-width: 500px;
+    border-radius: 20px;
+  }
+
+  /* RIGHT: Maps + charts */
+  .hero-right {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .hero-main-title {
+    font-family: 'Sour Gummy', cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #ff9ec0, #9ed0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .map-title, .chart-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #444;
+    margin: 1rem 0;
+  }
+
+  .map-div, .chart-div {
+    width: 100%;
+    min-height: 400px;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      flex-direction: column;
+      align-items: center;
     }
 
-    header {
+    .hero-left img {
+      max-width: 350px;
+    }
+
+    .map-div, .chart-div {
+      min-height: 300px;
+    }
+
+    .hero-main-title, .map-title, .chart-title {
       text-align: center;
-      padding: 2rem 1rem 1rem;
-      background: url('https://cdn-icons-png.flaticon.com/512/616/616408.png') no-repeat right 40px top 20px,
-                  url('https://cdn-icons-png.flaticon.com/512/616/616490.png') no-repeat left 40px top 20px;
-      background-size: 60px;
     }
-
-    header h1 {
-      font-size: 2.2rem;
-      color: #3b4a60;
-      margin-bottom: 0.3rem;
-    }
-
-    header p {
-      color: #6b7b8c;
-      font-size: 1rem;
-    }
-
-    .viz-container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      background: white;
-      border-radius: 25px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding: 2rem;
-    }
-
-    .viz {
-      margin-bottom: 4rem;
-    }
-
-    .viz h2 {
-      text-align: center;
-      color: #3b4a60;
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      color: #888;
-      background-color: #f9fbfd;
-      border-top: 1px solid #eee;
-    }
-
-    .baby-deco {
-      text-align: center;
-      margin: 2rem 0;
-    }
-
-    .baby-deco img {
-      width: 60px;
-      margin: 0 10px;
-      opacity: 0.8;
-    }
-
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Birth Trends in Malaysia (2000–2023)</h1>
-    <p>A gentle look into how life began across the years — by state, ethnicity, and gender.</p>
-  </header>
-
-  <div class="baby-deco">
-    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048944.png" alt="baby bottle">
-    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048920.png" alt="baby rattle">
-    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="baby face">
+<section class="hero">
+  <!-- LEFT: Illustration -->
+  <div class="hero-left">
+    <img src="https://github.com/Ritz21-Raina/DataVisualisation2/blob/main/main%20image.png?raw=true" alt="Pregnant woman carrying baby">
   </div>
 
-  <main class="viz-container">
+  <!-- RIGHT: Maps + charts -->
+  <div class="hero-right">
+    <div class="hero-main-title">Birth Rate & Trends in Malaysia</div>
 
-    <!-- MAPS -->
-    <section class="viz">
-      <h2>Birth Rate per 1000 People — Year 2000</h2>
-      <div id="map2000"></div>
-      <script>
-        // Replace URL below with your Vega-Lite spec URL or inline spec
-        vegaEmbed('#map2000', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/map_2000.json');
-      </script>
-    </section>
+    <!-- Maps -->
+    <div class="map-title">Year 2000</div>
+    <div id="map-2000" class="map-div"></div>
 
-    <section class="viz">
-      <h2>Birth Rate per 1000 People — Year 2010</h2>
-      <div id="map2010"></div>
-      <script>
-        vegaEmbed('#map2010', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/map_2010.json');
-      </script>
-    </section>
+    <div class="map-title">Year 2010</div>
+    <div id="map-2010" class="map-div"></div>
 
-    <section class="viz">
-      <h2>Birth Rate per 1000 People — Year 2020</h2>
-      <div id="map2020"></div>
-      <script>
-        vegaEmbed('#map2020', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/map_2020.json');
-      </script>
-    </section>
+    <div class="map-title">Year 2020</div>
+    <div id="map-2020" class="map-div"></div>
 
-    <!-- LINE CHART -->
-    <section class="viz">
-      <h2>Birth Count by Ethnicity (2000–2023)</h2>
-      <div id="linechart"></div>
-      <script>
-        vegaEmbed('#linechart', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/BirthCount_Ethnicity.json');
-      </script>
-    </section>
+    <!-- Line Chart -->
+    <div class="chart-title">Ethnicity over the Years</div>
+    <div id="linechart" class="chart-div"></div>
 
-    <!-- LOLLIPOP CHART -->
-    <section class="viz">
-      <h2>Birth Count per State — Select Year</h2>
-      <div id="lollipop"></div>
-      <script>
-        vegaEmbed('#lollipop', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/BirthCount_States.json');
-      </script>
-    </section>
+    <!-- Lollipop Chart -->
+    <div class="chart-title">Birth Count by States (Select Year)</div>
+    <div id="lollipop" class="chart-div"></div>
+  </div>
+</section>
 
-    <!-- POPULATION PYRAMID -->
-    <section class="viz">
-      <h2>Population Pyramid — Birth Count by Gender & State</h2>
-      <div id="pyramid"></div>
-      <script>
-        vegaEmbed('#pyramid', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/BirthCount_State_Gender.json');
-      </script>
-    </section>
+<script>
+  // Embed Maps
+  vegaEmbed('#map-2000', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/map_2000.json');
+  vegaEmbed('#map-2010', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/map_2010.json');
+  vegaEmbed('#map-2020', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/map_2020.json');
 
-    <!-- HEATMAP -->
-    <section class="viz">
-      <h2>Heatmap of Births — Ethnicity × State</h2>
-      <div id="heatmap"></div>
-      <script>
-        vegaEmbed('#heatmap', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/draft_heatmap.json');
-      </script>
-    </section>
+  // Embed Line Chart (Ethnicity over the Years)
+  vegaEmbed('#linechart', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/BirthCount_Ethnicity.json');
 
-  </main>
-
-  <footer>
-    <p>By Ritika Raina — celebrating the beauty of beginnings.</p>
-  </footer>
+  // Embed Lollipop Chart (Birth Count by States with Year filter)
+  vegaEmbed('#lollipop', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/BirthCount_States.json');
+</script>
 
 </body>
 </html>
