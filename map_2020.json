@@ -1,8 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 700,
-  "height": 500,
-  "title": "Malaysia Live Birth Rate per 1,000 People (Year 2020)",
+  "width": 300,
+  "height": 200,
   "data": {
     "url": "https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/Data/dataset_for_map_2020.csv"
   },
@@ -25,7 +24,7 @@
       "field": "birth_rate",
       "type": "quantitative",
       "title": "Birth Rate (per 1,000)",
-      "scale": {"scheme": "blues"}
+      "scale": {"range": ["#ffd1dc", "#ffb6c1", "#ff85a2", "#ff69b4"]}
     },
     "tooltip": [
       {"field": "state", "title": "State"},
