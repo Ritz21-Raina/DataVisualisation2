@@ -60,7 +60,39 @@
     text-align: center;
   }
 
-  .map-title, .chart-title {
+  /* Maps row */
+  .maps-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1; /* maps take equal width */
+    min-width: 200px; /* prevents shrinking too much on small screens */
+  }
+
+  .map-div {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 0.5rem; /* space between map and caption */
+  }
+
+  .map-caption {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #444;
+    text-align: center;
+  }
+
+  /* Chart titles */
+  .chart-title {
     font-family: 'Poppins', sans-serif;
     font-size: 1.6rem;
     font-weight: 600;
@@ -68,7 +100,7 @@
     margin: 1rem 0;
   }
 
-  .map-div, .chart-div {
+  .chart-div {
     width: 100%;
     min-height: 400px;
     margin-bottom: 2rem;
@@ -88,8 +120,17 @@
       min-height: 300px;
     }
 
-    .hero-main-title, .map-title, .chart-title {
+    .hero-main-title, .map-caption, .chart-title {
       text-align: center;
+    }
+
+    .maps-row {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .map-div {
+      height: 250px;
     }
   }
 </style>
@@ -106,15 +147,23 @@
   <div class="hero-right">
     <div class="hero-main-title">Birth Rate & Trends in Malaysia</div>
 
-    <!-- Maps -->
-    <div class="map-title">Year 2000</div>
-    <div id="map-2000" class="map-div"></div>
+    <!-- Maps row -->
+    <div class="maps-row">
+      <div class="map-container">
+        <div id="map-2000" class="map-div"></div>
+        <div class="map-caption">Year 2000</div>
+      </div>
 
-    <div class="map-title">Year 2010</div>
-    <div id="map-2010" class="map-div"></div>
+      <div class="map-container">
+        <div id="map-2010" class="map-div"></div>
+        <div class="map-caption">Year 2010</div>
+      </div>
 
-    <div class="map-title">Year 2020</div>
-    <div id="map-2020" class="map-div"></div>
+      <div class="map-container">
+        <div id="map-2020" class="map-div"></div>
+        <div class="map-caption">Year 2020</div>
+      </div>
+    </div>
 
     <!-- Line Chart -->
     <div class="chart-title">Ethnicity over the Years</div>
