@@ -1,7 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Heatmap of birth counts by state and ethnicity with gender filter",
-  "title": "Birth Counts by State and Ethnicity",
+  "description": "Heatmap of birth counts by state and ethnicity with gender filter (purple gradient).",
+  "title": {
+    "text": "Birth Counts by State and Ethnicity",
+    "font": "Poppins",
+    "fontSize": 20,
+    "color": "#3C3C3C"
+  },
   "width": 700,
   "height": 500,
   "data": {
@@ -11,57 +16,69 @@
   "params": [
     {
       "name": "selectedSex",
-      "value": "both",
+      "value": "male",
       "bind": {
         "input": "select",
-        "options": ["male", "female", "both"],
-        "name": "Select Gender: "
-      }
-    },
-    {
-      "name": "selectedYear",
-      "value": 2020,
-      "bind": {
-        "input": "range",
-        "min": 2000,
-        "max": 2023,
-        "step": 1,
-        "name": "Select Year: "
+        "options": ["male", "female"],
+        "name": "Gender: "
       }
     }
   ],
   "transform": [
-    {"filter": "datum.sex == selectedSex"},
-    {"filter": "toNumber(datum.Year) == selectedYear"},
-    {"filter": "isFinite(toNumber(datum.abs))"},
-    {"calculate": "toNumber(datum.abs)", "as": "birth_count"}
+    {
+      "filter": "datum.ethnicity!== 'overall'"
+    },
+    {
+      "filter": "datum.sex == selectedSex"
+    },
+    {
+      "calculate": "toNumber(datum.abs)",
+      "as": "birth_count"
+    },
+    {
+      "filter": "isFinite(datum.birth_count)"
+    }
   ],
   "mark": "rect",
   "encoding": {
-    "y": {"field": "state", "type": "ordinal", "axis": {"title": "State"}},
+    "y": {
+      "field": "state",
+      "type": "ordinal",
+      "axis": {"title": "State"}
+    },
     "x": {
       "field": "ethnicity",
       "type": "ordinal",
-      "axis": {"title": "Ethnicity"}
+      "axis": {"title": "Ethnicity", "labelAngle": -45}
     },
     "color": {
       "field": "birth_count",
       "type": "quantitative",
-      "scale": {"scheme": "purplered"},
+      "scale": {
+        "range": ["#f3e8ff", "#d8b4fe", "#a855f7", "#6b21a8"]
+      },
       "legend": {"title": "Birth Count"}
     },
     "tooltip": [
       {"field": "state", "title": "State"},
       {"field": "ethnicity", "title": "Ethnicity"},
-      {"field": "birth_count", "title": "Birth Count"},
+      {"field": "abs", "title": "Birth Count"},
       {"field": "Year", "title": "Year"},
       {"field": "sex", "title": "Gender"}
     ]
   },
   "config": {
     "view": {"stroke": "transparent"},
-    "axis": {"labelFontSize": 12, "titleFontSize": 13},
+    "axis": {
+      "labelFont": "Poppins",
+      "titleFont": "Poppins",
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "labelColor": "#5A5A5A",
+      "titleColor": "#5A5A5A"
+    },
     "title": {"fontSize": 18, "fontWeight": "600"},
-    "background": "#fff"
+    "background": "#fffafc"
   }
 }
+
