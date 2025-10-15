@@ -1,9 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Statewise Population Pyramid with Year Slider (Overall Ethnicity)",
-  "title": "Statewise Population Pyramid by Year (Overall Ethnicity)",
-  "width": 700,
-  "height": 500,
+   "title": {
+    "text": "Malaysia’s Population Pyramid by State and Year",
+    "font": "Poppins",
+    "fontSize": 20,
+    "color": "#3C3C3C"
+  },
+  "width": 500,
+  "height": 300,
+  "background": "#FFF8E7",
   "data": {
     "url": "https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/Data/dataset.csv",
     "format": {"type": "csv"}
@@ -58,7 +64,7 @@
     "tooltip": [
       {"field": "state", "title": "State"},
       {"field": "sex", "title": "Gender"},
-      {"field": "abs", "title": "Population"},
+      {"field": "abs", "title": "Population", "format":","},
       {"field": "Year", "title": "Year"}
     ]
   },
