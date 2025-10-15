@@ -2,8 +2,9 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Live births per year for key ethnic groups (aggregated for all states, both sexes).",
   "title": "Live Birth trends by Ethnicity",
-  "width": 700,
-  "height": 400,
+  "width": 500,
+  "height": 300,
+  "background": "#FFF8E7",
   "data": {
     "url": "https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/Data/dataset.csv"
   },
@@ -33,7 +34,7 @@
           "title": "Ethnicity",
           "scale": {
             "domain": ["Bumiputera Malay", "Chinese", "Indian", "Other Bumiputera"],
-            "range": ["#1f77b4", "#ff7f0e", "#FFD700", "#d62728"]
+            "range": ["#FFB7CE", "#8FC6D9", "#91C9A4", "#C5A6DD"]
           }
         },
         "tooltip": [
