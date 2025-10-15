@@ -1,7 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "width": 800,
-  "height": 500,
+  "width": 500,
+  "height": 300,
+  "background": "#FFF8E7",
   "data": {
     "url": "https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/Data/dataset.csv"
   },
