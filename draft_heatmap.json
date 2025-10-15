@@ -9,6 +9,7 @@
   },
   "width": 700,
   "height": 500,
+  "background": "#FFF8E7"
   "data": {
     "url": "https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/Data/dataset.csv",
     "format": {"type": "csv"}
