@@ -40,7 +40,7 @@
         "tooltip": [
           {"field": "Year", "type": "ordinal"},
           {"field": "Ethnicity_Label", "type": "nominal", "title": "Ethnicity"},
-          {"field": "total_births", "type": "quantitative", "title": "Live Births"}
+          {"field": "total_births", "type": "quantitative", "title": "Live Births", "format":","}
         ]
       }
     },
