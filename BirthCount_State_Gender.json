@@ -58,7 +58,7 @@
     "tooltip": [
       {"field": "state", "title": "State"},
       {"field": "sex", "title": "Gender"},
-      {"field": "abs", "title": "Population", "format":","},
+      {"field": "abs", "title": "Live Birth Count", "format":","},
       {"field": "Year", "title": "Year"}
     ]
   },
