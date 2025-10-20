@@ -1,12 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Statewise Population Pyramid with Year Slider (Overall Ethnicity)",
-   "title": {
-    "text": "Malaysia’s Population Pyramid by State and Year",
-    "font": "Poppins",
-    "fontSize": 20,
-    "color": "#3C3C3C"
-  },
   "width": 570,
   "height": 300,
   "background": "#FFF8E7",
