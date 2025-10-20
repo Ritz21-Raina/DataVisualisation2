@@ -1,7 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Live births per year for key ethnic groups (aggregated for all states, both sexes).",
-  "title": "Live Birth trends by Ethnicity",
   "width": 510,
   "height": 300,
   "background": "#FFF8E7",
