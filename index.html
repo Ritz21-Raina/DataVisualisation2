@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birth Rate and Trends in Malaysia</title>
+<title>Birth Rate & Trends in Malaysia</title>
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Sour+Gummy&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sour+Gummy&family=Poppins:wght@400;600&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
 
 <!-- Vega & Vega-Lite -->
 <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
@@ -14,179 +14,320 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
 <style>
-  body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(to bottom right, #fef6f8, #f2f9ff);
-    color: #444;
-  }
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom right, #d4d4ff, #a6a8f7);
+  color: #444;
+}
 
-  .hero {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-    padding: 2rem;
-    flex-wrap: wrap;
-  }
+/* FOOTER */
+.footer {
+  background: linear-gradient(to right, #a6a8f7, #d4d4ff);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.95rem;
+  color: #333;
+  margin-top: 4rem;
+  border-top: 2px solid rgba(0,0,0,0.1);
+}
 
-  /* LEFT: Illustration */
-  .hero-left {
-    display: flex;
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+}
+
+.footer li {
+  margin: 0.3rem 0;
+}
+
+.footer a {
+  color: #1e3a8a;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* TITLE */
+.hero-main-title {
+  font-family: 'Sour Gummy', cursive;
+  font-size: 2.8rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #ff1493, #1e90ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin: 2rem 0 0.5rem 0;
+}
+
+.hero-subtitle {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+/* SECTION DIVIDER */
+.section-divider {
+  height: 4px;
+  width: 70%;
+  background: linear-gradient(to right, #3087d9, #79aad9);
+  border-radius: 2px;
+  margin: 4rem auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* SECTION HEADINGS */
+.section-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 2rem 0 1rem 0;
+  color: #333;
+}
+
+/* MAPS SECTION */
+.maps-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 0rem;
+  padding: 0 2rem;
+}
+
+.map-container {
+  flex: 1;
+  min-width: 280px;
+  text-align: center;
+}
+
+.map-div {
+  width: 100%;
+  height: 280px;
+}
+
+.map-caption {
+  margin-top: -5rem; /* very close to the map */
+  font-weight: 600;
+  font-size: 1.4rem; /* increased font size */
+}
+
+/* ANALYSIS BOXES */
+.analysis-box {
+  background: white;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-top: 1rem;
+}
+
+.analysis-box p {
+  line-height: 1.5;
+  text-align: justify;
+  max-width: 60ch;  /* roughly 10 words per line */
+  margin: 0 auto;   /* center the paragraph block */
+  word-wrap: break-word;
+}
+
+/* Separate class for charts’ analysis spacing */
+.chart-analysis {
+  margin-top: 1rem;
+}
+
+/* CHARTS SECTION */
+.chart-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  padding: 0 2rem;
+}
+
+.chart-div {
+  flex: 1;
+  min-width: 350px;
+  height: 400px;
+}
+
+.chart-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.chart-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* HEATMAP SECTION */
+.heatmap-section {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 0 2rem;
+}
+
+.heatmap-div {
+  width: 80%;
+  height: 400px;
+  margin: 0 auto;
+}
+
+.heatmap-analysis {
+  background: white;
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 900px) {
+  .maps-row, .chart-section {
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-  }
-
-  .hero-left img {
-    max-width: 500px;
-    border-radius: 20px;
-  }
-
-  /* RIGHT: Maps + charts */
-  .hero-right {
-    flex: 1;
-    min-width: 300px;
-  }
-
-  .hero-main-title {
-    font-family: 'Sour Gummy', cursive;
-    font-size: 2.5rem;
-    font-weight: bold;
-    background: linear-gradient(to right, #ff9ec0, #9ed0ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 2rem;
-    line-height: 1.2;
-    text-align: center;
-  }
-
-  /* Maps row */
-  .maps-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .map-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1; /* maps take equal width */
-    min-width: 200px; /* prevents shrinking too much on small screens */
-  }
-
-  .map-div {
-    width: 100%;
-    height: 300px;
-    margin-bottom: 0.5rem; /* space between map and caption */
-  }
-
-  .map-caption {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #444;
-    text-align: center;
-  }
-
-  /* Chart titles */
-  .chart-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #444;
-    margin: 1rem 0;
+    padding: 0 1rem;
   }
 
   .chart-div {
-    width: 100%;
-    min-height: 400px;
-    margin-bottom: 2rem;
+    height: 300px;
   }
 
-  @media (max-width: 900px) {
-    .hero {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .hero-left img {
-      max-width: 350px;
-    }
-
-    .map-div, .chart-div {
-      min-height: 300px;
-    }
-
-    .hero-main-title, .map-caption, .chart-title {
-      text-align: center;
-    }
-
-    .maps-row {
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .map-div {
-      height: 250px;
-    }
+  .heatmap-div {
+    width: 95%;
   }
+}
 </style>
 </head>
+
 <body>
 
-<section class="hero">
-  <!-- LEFT: Illustration -->
-  <div class="hero-left">
-    <img src="https://github.com/Ritz21-Raina/DataVisualisation2/blob/main/main%20image.png?raw=true" alt="Pregnant woman carrying baby">
-  </div>
+<!-- Page Title -->
+<div class="hero-main-title">Birth Rate & Trends in Malaysia</div>
+<div class="hero-subtitle">Exploring birth patterns, ethnic trends, and demographic shifts across Malaysian states</div>
 
-  <!-- RIGHT: Maps + charts -->
-  <div class="hero-right">
-    <div class="hero-main-title">Birth Rate & Trends in Malaysia</div>
+<!-- MAPS SECTION -->
+<div class="maps-section">
+  <div class="section-heading">Birth Rate Overview</div>
 
-    <!-- Maps row -->
-    <div class="maps-row">
-      <div class="map-container">
-        <div id="map-2000" class="map-div"></div>
-        <div class="map-caption">Year 2000</div>
-      </div>
-
-      <div class="map-container">
-        <div id="map-2010" class="map-div"></div>
-        <div class="map-caption">Year 2010</div>
-      </div>
-
-      <div class="map-container">
-        <div id="map-2020" class="map-div"></div>
-        <div class="map-caption">Year 2020</div>
+  <div class="maps-row">
+    <div class="map-container">
+      <div id="map-2000" class="map-div"></div>
+      <div class="map-caption">Year 2000</div>
+      <div class="analysis-box">
+        <p>Compared to all the given maps, we can see the birthrate is higher over here. The highest birth rate is found in <strong><span style="color:#1e90ff;"> Selangor</span></strong> with <strong><span style="color:#1e90ff;">3.99 births per 1000 people.</span></strong></p>
       </div>
     </div>
 
-    <!-- Line Chart -->
-    <div class="chart-title">Ethnicity over the Years</div>
-    <div id="linechart" class="chart-div"></div>
+    <div class="map-container">
+      <div id="map-2010" class="map-div"></div>
+      <div class="map-caption">Year 2010</div>
+      <div class="analysis-box">
+        <p>There is slight decrease in the birthrate, however, Selangor still stays at the top. <strong><span style="color:#1e90ff;"> Johor</span></strong> has a drastic change compared to the year 2000. It has dropped from<strong><span style="color:#1e90ff;"> 2.93 per 1000 to 1.96 per 100.</span></strong></p>
+      </div>
+    </div>
 
-    <!-- Lollipop Chart -->
-    <div class="chart-title">Birth Count by States (Select Year)</div>
-    <div id="lollipop" class="chart-div"></div>
+    <div class="map-container">
+      <div id="map-2020" class="map-div"></div>
+      <div class="map-caption">Year 2020</div>
+      <div class="analysis-box">
+        <p>The birth rate has dropped drastically over the past 20 years. And the highest birth rate is 2.76 in Selangor.</p>
+      </div>
+    </div>
   </div>
-</section>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- CHARTS SECTION 1: Line Chart -->
+<div class="section-heading">Trends in Birth Counts by Ethnicity</div>
+<div class="chart-section">
+  <div class="chart-div" id="linechart"></div>
+  <div class="chart-text analysis-box chart-analysis">
+    <p>This line chart shows the trend of live births in Malaysia by ethnicity from 2000 to 2023. <br><br>Overall, <strong><span style="color:#FFB7CE;"> Bumiputera Malays</span></strong> consistently recorded the <strong><span style="color:#FFB7CE;">highest number of births</span></strong>, peaking around 2015–2017 before showing a gradual decline in recent years. The <strong><span style="color:#8FC6D9;">Chinese</span></strong> population exhibits a steady and notable downward trend, with a <strong><span style="color:#8FC6D9;">sharper decline</span></strong> observed after <strong><span style="color:#8FC6D9;">2016</span></strong>, as highlighted in the chart. <br><br><strong><span style="color:#91C9A4;">Indian</span></strong> and <strong><span style="color:#C5A6DD;">Other Bumiputera</span></strong> groups have relatively stable but lower birth counts, with slight fluctuations over the years.</p>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- CHARTS SECTION 2: Lollipop Chart -->
+<div class="section-heading">Birth Trends Across States</div>
+<div class="chart-section" style="flex-direction: row-reverse;">
+  <div class="chart-div" id="lollipop"></div>
+  <div class="chart-text analysis-box chart-analysis">
+    <p><strong><span style="color:#eb7474;">Selangor, Johor and Sabah</span></strong> remain at top 3 throughout the years. <br><br>On the other hand Labuan and Perlis come at the bottom. <strong><span style="color:#eb7474;">Putrajaya</span></strong> comes out in 2010, and takes the second last spot of Perlis, pushing Perlis a step higher.</p>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- CHARTS SECTION 3: Population Pyramid -->
+<div class="section-heading">Birth Counts by Gender and State (Over the Years)</div>
+<div class="chart-section">
+  <div class="chart-div" id="pyramid"></div>
+  <div class="chart-text analysis-box chart-analysis">
+    <p>Birth counts across states show nearly equal values for males and females.
+This indicates a <strong><span style="color:#A7C7E7;">naturally balanced gender ratio</span></strong> in live births.<br><br>
+
+The trend suggests consistency in fertility patterns across all regions.
+No state shows significant deviation between male and female births.<br><br>
+
+Overall, Malaysia maintains demographic stability despite declining birth rates.
+Both <strong><span style="color:#A7C7E7;">genders contribute evenly to the nation’s population growth.</span></strong></p>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- HEATMAP SECTION -->
+<div class="section-heading">Birth Count Distribution by Ethnicity and State</div>
+<div class="heatmap-section">
+  <div class="heatmap-div" id="heatmap"></div>
+  <div class="heatmap-analysis">
+    <p><strong><span style="color:#a855f7;">Selangor</span></strong> records the highest births across both genders, reflecting <strong><span style="color:#a855f7;">strong urban growth and concentration.</span></strong><br><br>
+
+<strong><span style="color:#a855f7;">Sarawak</span></strong> follows closely, driven by its <strong><span style="color:#a855f7;">large Bumiputera Other</span></strong> population.<br><br>
+
+Smaller states like Perlis, Labuan, and Putrajaya show lower birth counts due to limited populations.<br><br>
+
+Across Malaysia, <strong><span style="color:#a855f7;">Bumiputera Malays</span></strong> and <strong><span style="color:#a855f7;">Bumiputera Other dominate</span></strong>, while Chinese, Indian, and other groups show lower figures.</p>
+  </div>
+</div>
 
 <script>
-  // Embed Maps
-  vegaEmbed('#map-2000', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/map_2000.json');
-  vegaEmbed('#map-2010', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/map_2010.json');
-  vegaEmbed('#map-2020', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/map_2020.json');
+// MAPS
+vegaEmbed('#map-2000', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/map_2000.json');
+vegaEmbed('#map-2010', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/map_2010.json');
+vegaEmbed('#map-2020', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/map_2020.json');
 
-  // Embed Line Chart (Ethnicity over the Years)
-  vegaEmbed('#linechart', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/BirthCount_Ethnicity.json');
-
-  // Embed Lollipop Chart (Birth Count by States with Year filter)
-  vegaEmbed('#lollipop', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/BirthCount_States.json');
+// CHARTS
+vegaEmbed('#linechart', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/BirthCount_Ethnicity.json');
+vegaEmbed('#lollipop', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/BirthCount_States.json');
+vegaEmbed('#pyramid', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/BirthCount_State_Gender.json');
+vegaEmbed('#heatmap', 'https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/draft_heatmap.json');
 </script>
+
+<!-- FOOTER SECTION -->
+<footer class="footer">
+  <p><strong>By:</strong> Ritika Raina (34389377)</p>
+  <p><strong>Data Sources:</strong></p>
+  <ul>
+    <li>TopoJSON Map: <a href="https://simplemaps.com/gis/country/my" target="_blank">https://simplemaps.com/gis/country/my</a></li>
+    <li>Annual Live Births by State, Sex, & Ethnicity: <a href="https://open.dosm.gov.my/data-catalogue/births_annual_sex_ethnic_state?state=johor&sex=male&ethnicity=overall&visual=table" target="_blank">https://open.dosm.gov.my/data-catalogue/births_annual_sex_ethnic_state</a></li>
+    <li>Total Population Malaysia: <a href="https://ourworldindata.org/explorers/population-and-demography?time=2000..2023&hideControls=false&indicator=Population&Sex=Both+sexes&Age=Total&Projection+scenario=None&country=~MYS" target="_blank">https://ourworldindata.org/explorers/population-and-demography</a></li>
+  </ul>
+</footer>
+
 
 </body>
 </html>
