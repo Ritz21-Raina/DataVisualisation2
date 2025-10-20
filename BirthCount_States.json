@@ -76,16 +76,10 @@
         "tooltip": [
           {"field": "state", "title": "State"},
           {"field": "Year", "title": "Year"},
-          {"field": "total_births", "title": "Total Live Births"}
+          {"field": "total_births", "title": "Total Live Births", "format":","}
         ]
       }
     }
   ],
-  "title": {
-    "text": "Total Live Births per State (2000–2023)",
-    "fontSize": 18,
-    "fontWeight": "bold",
-    "anchor": "start"
-  },
   "config": {}
 }
