@@ -2,13 +2,6 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 300,
   "height": 170,
-  "title": {
-    "text": "Birth Rate Across Malaysian States (Year 2010)",
-    "fontSize": 18,
-    "anchor": "start",
-    "fontWeight": "bold",
-    "dy": -10
-  },
   "layer": [
     {
       "data": {
