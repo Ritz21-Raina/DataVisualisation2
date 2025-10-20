@@ -1,13 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Heatmap of birth counts by state and ethnicity with gender filter (purple gradient).",
-  "title": {
-    "text": "Birth Counts by State and Ethnicity",
-    "font": "Poppins",
-    "fontSize": 20,
-    "color": "#3C3C3C"
-  },
-  "width": 400,
+  "width": 600,
   "height": 300,
   "background": "#FFF8E7",
   "data": {
@@ -27,7 +21,7 @@
   ],
   "transform": [
     {
-      "filter": "datum.ethnicity!== 'overall'"
+      "filter": "datum.ethnicity !== 'overall'"
     },
     {
       "filter": "datum.sex == selectedSex"
@@ -38,6 +32,10 @@
     },
     {
       "filter": "isFinite(datum.birth_count)"
+    },
+    {
+      "calculate": "replace(datum.ethnicity, '_', ' ')",
+      "as": "ethnicity_label"
     }
   ],
   "mark": "rect",
@@ -48,9 +46,15 @@
       "axis": {"title": "State"}
     },
     "x": {
-      "field": "ethnicity",
+      "field": "ethnicity_label",
       "type": "ordinal",
-      "axis": {"title": "Ethnicity", "labelAngle": -45}
+      "axis": {
+        "title": "Ethnicity",
+        "labelAngle": -45,
+        "labelFont": "Poppins",
+        "labelFontSize": 14,
+        "labelColor": "#5A5A5A"
+      }
     },
     "color": {
       "field": "birth_count",
@@ -62,9 +66,8 @@
     },
     "tooltip": [
       {"field": "state", "title": "State"},
-      {"field": "ethnicity", "title": "Ethnicity"},
-      {"field": "abs", "title": "Birth Count"},
-      {"field": "Year", "title": "Year"},
+      {"field": "ethnicity_label", "title": "Ethnicity"},
+      {"field": "abs", "title": "Birth Count", "format": ","},
       {"field": "sex", "title": "Gender"}
     ]
   },
@@ -78,8 +81,7 @@
       "labelColor": "#5A5A5A",
       "titleColor": "#5A5A5A"
     },
-    "title": {"fontSize": 18, "fontWeight": "600"},
+    "title": {"fontSize": 18, "fontWeight": "bold"},
     "background": "#fffafc"
   }
 }
-
