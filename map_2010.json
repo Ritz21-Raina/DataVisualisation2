@@ -2,10 +2,24 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 300,
   "height": 200,
+  "title": {
+    "text": "Birth Rate Across Malaysian States (Year 2010)",
+    "fontSize": 18,
+    "anchor": "start",
+    "fontWeight": "bold",
+    "dy": -10
+  },
   "data": {
-    "url": "https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/Data/dataset_for_map_2010.csv"
+    "url": "https://raw.githubusercontent.com/Ritz21-Raina/DataVisualisation2/refs/heads/main/Data/dataset.csv"
   },
   "transform": [
+    {
+      "filter": "datum.Year == 2010 && datum.sex == 'both' && datum.ethnicity == 'overall'"
+    },
+    {
+      "calculate": "(datum.abs / datum.Malaysia_total_population) * 1000",
+      "as": "birth_rate"
+    },
     {
       "lookup": "state",
       "from": {
@@ -18,25 +32,34 @@
       }
     }
   ],
-  "mark": {"type": "geoshape"},
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 0.5
+  },
   "encoding": {
     "color": {
       "field": "birth_rate",
       "type": "quantitative",
       "title": "Birth Rate (per 1,000)",
-      "scale": {"range": ["#ffd1dc", "#ffb6c1", "#ff85a2", "#ff69b4"]}
+      "scale": {
+        "range": ["#ffd1dc", "#ffb6c1", "#ff85a2", "#ff69b4"]
+      }
     },
     "tooltip": [
       {"field": "state", "title": "State"},
       {"field": "birth_rate", "title": "Birth Rate per 1,000", "format": ".2f"},
       {"field": "abs", "title": "Total Births", "format": ","},
-      {
-        "field": "Malaysia_total_population",
-        "title": "Population",
-        "format": ","
-      }
+      {"field": "Malaysia_total_population", "title": "Population", "format": ","}
     ]
   },
+  "projection": {"type": "mercator"},
+  "config": {
+    "view": {"stroke": "transparent"},
+    "legend": {"titleFontSize": 12, "labelFontSize": 11}
+  }
+}
+,
   "projection": {"type": "mercator"},
   "config": {}
 }
